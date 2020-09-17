@@ -43,10 +43,6 @@
 
 ![폴리그랏](https://user-images.githubusercontent.com/68719232/93425440-f1c2b700-f8f4-11ea-9f64-a347666572b5.jpg)
 
-5.오토스캘링
-
-![HPA적용](https://user-images.githubusercontent.com/68719232/93425508-1880ed80-f8f5-11ea-8368-7feb3c144a07.jpg)
-![오토스캘링](https://user-images.githubusercontent.com/68719232/93425449-f7b89800-f8f4-11ea-9f5c-eca83658a715.jpg)
 
 6. liveness
 

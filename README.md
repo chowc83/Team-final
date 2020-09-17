@@ -1,5 +1,5 @@
 # 주제 : 꽃 배달 
-![제목 없음](https://user-images.githubusercontent.com/68719232/93423441-eff6f480-f8f0-11ea-8167-a3e0ad01070b.jpg)
+
 # 기능적 요구사항
 - 고객이 꽃배달 메뉴 선택하여 주문한다
 - 주문이 되면 결제 시스템의 결제 기능이 호출된다
@@ -14,46 +14,42 @@
 # 이벤트스토밍
 <img width="1920" alt="스크린샷 2020-09-16 오전 8 56 38" src="https://user-images.githubusercontent.com/29944530/93278534-ee013880-f7ff-11ea-8787-86510a5ddacc.png">
 
+
+![제목 없음](https://user-images.githubusercontent.com/68719232/93425919-f63b9f80-f8f5-11ea-9faf-919ec4226530.jpg)
+
 # 시연
 1. order 하기
-- http http://ab399056093b4495f9f7940d3e95c4f9-305412969.ap-northeast-2.elb.amazonaws.com:8080/orders flowerName=Rose qty=7 address=seoul customerName=lee phoneNumber=01012341234
+![ordered](https://user-images.githubusercontent.com/68719232/93425286-a01a2c80-f8f4-11ea-989b-a9deef1a7e8e.jpg)
+![ordered2](https://user-images.githubusercontent.com/68719232/93425312-adcfb200-f8f4-11ea-816e-3219e5200e87.jpg)
 
-![order 캡쳐](https://user-images.githubusercontent.com/60597630/93294322-2109f300-f825-11ea-983a-75d9d47b34eb.JPG)
-![order 캡쳐2](https://user-images.githubusercontent.com/60597630/93294330-223b2000-f825-11ea-94f4-fce9b5ac5af2.JPG)
+2. quickdelivery
+![quick](https://user-images.githubusercontent.com/68719232/93425328-b58f5680-f8f4-11ea-86db-db25150618dc.jpg)
+![quick2](https://user-images.githubusercontent.com/68719232/93425333-b7591a00-f8f4-11ea-8ecf-1f6a94198c81.jpg)
 
-2. delivery 확인
-- http http://ab399056093b4495f9f7940d3e95c4f9-305412969.ap-northeast-2.elb.amazonaws.com:8080/deliveries
+3.view
+![mypages](https://user-images.githubusercontent.com/68719232/93425371-cd66da80-f8f4-11ea-9316-bd6739ab1115.jpg)
+![mypages2](https://user-images.githubusercontent.com/68719232/93425378-cf309e00-f8f4-11ea-9ece-460e5fc12736.jpg)
+![orderdetails](https://user-images.githubusercontent.com/68719232/93425386-d2c42500-f8f4-11ea-9e7f-0c3e0226042e.jpg)
+![orderdetails2](https://user-images.githubusercontent.com/68719232/93425388-d48de880-f8f4-11ea-962e-cb5536e66a20.jpg)
 
-3. shipped 하기
-- http PATCH http://ab399056093b4495f9f7940d3e95c4f9-305412969.ap-northeast-2.elb.amazonaws.com:8080/deliveries/2 status="DeliveryStart"
+4.Feingclient
+![feignclient](https://user-images.githubusercontent.com/68719232/93425403-dbb4f680-f8f4-11ea-81d0-7ac4d985390f.jpg)
 
-4. mypage 실행
-- http http://ab399056093b4495f9f7940d3e95c4f9-305412969.ap-northeast-2.elb.amazonaws.com:8080/mypages
+5.pologlot
+![폴리그랏](https://user-images.githubusercontent.com/68719232/93425440-f1c2b700-f8f4-11ea-9f64-a347666572b5.jpg)
 
-5. cancel하기
-- http PATCH http://ab399056093b4495f9f7940d3e95c4f9-305412969.ap-northeast-2.elb.amazonaws.com:8080/orders/1 status="OrderCancelled"
+5.오토스캘링
+![HPA적용](https://user-images.githubusercontent.com/68719232/93425508-1880ed80-f8f5-11ea-8368-7feb3c144a07.jpg)
+![오토스캘링](https://user-images.githubusercontent.com/68719232/93425449-f7b89800-f8f4-11ea-9f5c-eca83658a715.jpg)
 
-6.Feingclient
+6. liveness
+![live는 적용](https://user-images.githubusercontent.com/68719232/93425540-2c2c5400-f8f5-11ea-8eee-48f399a839c9.jpg)
+![liveness적용된 결과11](https://user-images.githubusercontent.com/68719232/93425481-0dc65880-f8f5-11ea-813a-2eed7f1b1a85.jpg)
+![liveness적용된 결과](https://user-images.githubusercontent.com/68719232/93425486-1028b280-f8f5-11ea-8c15-86272b973b3b.jpg)
 
-![feignclient 캡처](https://user-images.githubusercontent.com/60597630/93294171-c7a1c400-f824-11ea-940b-2b9af777f7d1.JPG)
-
-7. CI/CD, readiness/liveness 구현
-- buildspec, codebuild 적용
-![buildspec](https://user-images.githubusercontent.com/60597630/93287560-c9638b80-f814-11ea-9c9b-f5ac701809e6.JPG)
-![cicd](https://user-images.githubusercontent.com/60597630/93287562-ca94b880-f814-11ea-8d12-81127393512e.JPG)
-
-8. circuit breaker 적용
-- siege -c50 -t30S  -v --content-type "application/json" 'http://order:8080/orders POST {"flowerName":"AAAA","qty":5}' 으로 테스트
-![circuit breaker](https://user-images.githubusercontent.com/60597630/93287119-ac7a8880-f813-11ea-8df0-25ea88183f27.JPG)
-
-9. autoscale 적용
-- pod 1개
-![autoscale-before](https://user-images.githubusercontent.com/60597630/93286459-45a89f80-f812-11ea-92ff-c260ea110bbe.JPG)
-- 부하 발생시 pod 2개로 증가
-![autoscale-after](https://user-images.githubusercontent.com/60597630/93286455-45100900-f812-11ea-921f-8080af36f499.JPG)
-
-10. Jaeger 모니터링 적용 (http://a754bd45eff4d4b72af3ccbf2987bf6c-1373967310.ap-northeast-2.elb.amazonaws.com:16686)
-![jaeger](https://user-images.githubusercontent.com/60597630/93286820-09297380-f813-11ea-8938-782a1ae0981c.JPG)
-
-11. Kiali 모니터링 적용 (http://ae72f8a7283174456888fb7236a765e9-1825562489.ap-northeast-2.elb.amazonaws.com:20001)
-![kiari](https://user-images.githubusercontent.com/60597630/93286819-07f84680-f813-11ea-832b-002d18e7c4bb.JPG)
+7. readness
+![readness](https://user-images.githubusercontent.com/68719232/93425586-449c6e80-f8f5-11ea-8ad5-f066c489acf6.jpg)
+![readness제거](https://user-images.githubusercontent.com/68719232/93425602-4bc37c80-f8f5-11ea-858f-f9359f61eacc.jpg)
+![readness없는경우](https://user-images.githubusercontent.com/68719232/93425621-54b44e00-f8f5-11ea-83ec-48aa7d18fe41.jpg)
+![readness적용](https://user-images.githubusercontent.com/68719232/93425635-5aaa2f00-f8f5-11ea-9732-6522b717b46d.jpg)
+![readness적용결과](https://user-images.githubusercontent.com/68719232/93425645-5f6ee300-f8f5-11ea-9ce1-929e92eded10.jpg)
